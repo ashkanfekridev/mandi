@@ -1,0 +1,11 @@
+{
+  "name": "ashkanfekri/request",
+  "type": "library",
+  "license": "MIT",
+  "require": {},
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  }
+}

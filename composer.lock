@@ -1,0 +1,126 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "354698a840ad7ff7bb46330f78dbe316",
+    "packages": [
+        {
+            "name": "ashkanfekri/php-pdo-connector",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ashkanfekridev/php-pdo-connector.git",
+                "reference": "6857f683c934f3961130d00b870ab018652a83ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ashkanfekridev/php-pdo-connector/zipball/6857f683c934f3961130d00b870ab018652a83ae",
+                "reference": "6857f683c934f3961130d00b870ab018652a83ae",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2020-08-13T07:03:53+00:00"
+        },
+        {
+            "name": "ashkanfekri/request",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ashkanfekridev/php-request.git",
+                "reference": "1e65ccb9818e8ab6ab3659532355aa336d4fd897"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ashkanfekridev/php-request/zipball/1e65ccb9818e8ab6ab3659532355aa336d4fd897",
+                "reference": "1e65ccb9818e8ab6ab3659532355aa336d4fd897",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2020-08-15T18:32:57+00:00"
+        },
+        {
+            "name": "ashkanfekri/response",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ashkanfekridev/php-respnse.git",
+                "reference": "f038a5b96c120383cec6c3617d1a3bb5ce46dd61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ashkanfekridev/php-respnse/zipball/f038a5b96c120383cec6c3617d1a3bb5ce46dd61",
+                "reference": "f038a5b96c120383cec6c3617d1a3bb5ce46dd61",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2020-08-16T13:05:24+00:00"
+        },
+        {
+            "name": "ashkanfekri/router",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ashkanfekridev/php-router.git",
+                "reference": "77c1d945315adf6c0823f9bb6f5aef0e0eaf4154"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ashkanfekridev/php-router/zipball/77c1d945315adf6c0823f9bb6f5aef0e0eaf4154",
+                "reference": "77c1d945315adf6c0823f9bb6f5aef0e0eaf4154",
+                "shasum": ""
+            },
+            "require": {
+                "ashkanfekri/request": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2020-08-15T18:41:56+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}
