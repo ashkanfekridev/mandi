@@ -1,4 +1,4 @@
 <?php
 $router->get('/', function (){
-  echo 'hello';
+  return \Ashkanfekri\dodo\Response::view('home');
 });
