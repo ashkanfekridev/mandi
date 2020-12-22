@@ -3,7 +3,6 @@
 
 namespace App\Controllers;
 use App\Models\Posts;
-use App\Models\Users;
 use Ashkanfekri\dodo\PDOConnector;
 use Ashkanfekri\dodo\Response;
 
@@ -30,7 +29,7 @@ class AppController
 
 
     public function landing(){
-    return  (new Posts())->lastPosts();
+    (new Posts())->lastPosts();
         return Response::view('static.landing');
     }
 }

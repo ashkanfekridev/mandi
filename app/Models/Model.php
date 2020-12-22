@@ -118,4 +118,8 @@ abstract class Model implements ModelInterface
         //TODO
 
     }
+
+    public function paginate($item_count){
+        //TODO
+    }
 }
