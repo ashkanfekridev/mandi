@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Posts;
 use Ashkanfekri\dodo\PDOConnector;
 use Ashkanfekri\dodo\Response;
+use App\Models\Users;
 
 
 class AppController
@@ -23,12 +24,26 @@ class AppController
         $db = (new PDOConnector())->query($sql)->execute();
 //        create posts table
 
-        return $db;
-    }
+        return $db;}
 
 
 
     public function landing(){
+
+        $user = new Users();
+        $user->name = "ashkan";
+        $user->email = "ashkan@gmail.com";
+        $user->password = "12345678";
+        return $user->create();
+
+//
+//        [
+//            'name'=>'ashkan',
+//            'email'=>"ashkan@gmail.com",
+//            'password' => "12345678"
+//        ]
+
+
     (new Posts())->lastPosts();
         return Response::view('static.landing');
     }

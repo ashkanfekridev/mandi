@@ -24,11 +24,30 @@ abstract class Model implements ModelInterface
     protected $table;
     protected $key;
     protected $db;
+    protected $fillable;
+    private $attribute;
 
     public function __construct()
     {
         $this->db = (new PDOConnector());
     }
+
+    /**
+     * set a new atteribute
+     **/
+    public function __set($name, $value)
+    {
+        $this->attribute[$name] = $value;
+    }
+
+    /**
+     * get a atteribute
+     **/
+    public function __get($name)
+    {
+        return $this->attribute[$name];
+    }
+
 
     /**
      * @param array|string[] $item
@@ -50,6 +69,19 @@ abstract class Model implements ModelInterface
      */
     public function create(array $array = [])
     {
+        $data = [];
+
+        if ($array == [])
+            $array = $this->attribute;
+
+        foreach ($this->fillable as $item) {
+
+            if (!isset($array[$item]))
+                $data[$item] = $array[$item] = '';
+
+            $data[$item] = $array[$item];
+        }
+
         $sql = sprintf(
             "INSERT INTO %s (%s) values (%s)",
             $this->table,
@@ -92,7 +124,6 @@ abstract class Model implements ModelInterface
             "UPDATE %s set ", $this->table);
 
 
-
         foreach ($items as $item => $value) {
             $sql .= $item . '= :' . $item . ' ,';
         }
@@ -119,7 +150,8 @@ abstract class Model implements ModelInterface
 
     }
 
-    public function paginate($item_count){
+    public function paginate($item_count)
+    {
         //TODO
     }
 }
