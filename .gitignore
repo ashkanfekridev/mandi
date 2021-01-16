@@ -16,3 +16,5 @@ composer.lock
 *.iml
 out
 gen
+
+/node_modules
