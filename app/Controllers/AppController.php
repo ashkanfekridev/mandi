@@ -45,7 +45,11 @@ class AppController
 
     public function landing()
     {
-        (new Post())->lastPosts();
-        return Response::view('static.landing');
+        return User::all();
+
+
+//        return view('static.landing');
+//        (new Post())->lastPosts();
+//        return Response::view('static.landing');
     }
 }

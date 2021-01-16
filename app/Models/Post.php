@@ -12,6 +12,6 @@ class Post extends Model
     protected $key = 'id';
 
     public function lastPosts($count = 4){
-        return (new PDOConnector())->query("SELECT * FROM {$this->table} LIMIT {$count}")->all();
+        return PDOConnector::getInstance()->query("SELECT * FROM {$this->table} LIMIT {$count}")->all();
     }
 }

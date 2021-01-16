@@ -7,7 +7,7 @@ use Ashkanfekri\dodo\PDOConnector;
 
 interface ModelInterface
 {
-    public function all(array $item);
+    public static function all(array $item);
 
     public function find($key, array $items);
 
@@ -16,6 +16,7 @@ interface ModelInterface
     public function update($key, array $items);
 
     public function delete();
+
     public function getTable();
 
 }
@@ -23,47 +24,77 @@ interface ModelInterface
 abstract class Model implements ModelInterface
 {
 
+    protected $db;
+
     protected $table;
     protected $key;
-    protected $db;
-    protected $fillable;
-    private $attribute;
 
+    protected $fillable = [];
 
-    public function __construct()
-    {
-        $this->db = (new PDOConnector());
-    }
+    protected $attribute;
 
     /**
-     * set a new atteribute
-     **/
-    public function __set($name, $value)
-    {
-        $this->attribute[$name] = $value;
-    }
+     * @var
+     */
+    private static $instance;
 
     /**
-     * get a atteribute
-     **/
-    public function __get($name)
+     * create new instance from this class
+     * @return Model
+     */
+    public static function getInstance()
     {
-        return $this->attribute[$name];
+        self::$instance = self::$instance ?? new self();
+        return self::$instance;
     }
 
 
+    private function __construct()
+    {
+        $this->db = PDOConnector::getInstance();
+    }
+
     /**
-     * @param array|string[] $item
+     * Select all fillable columns from this table
+     * @param array[] $items
      * @return mixed
      */
-    public function all(array $item = ['*'])
+    public static function all(array $items = ['*'])
     {
+//        new object form this class
+        $model = (new static());
+//        if not where set items for select set fillable columns for select from this model
+        if ($items == ['*'])
+            $items = $model->fillable;
+// build a query for select all columns
         $sql = sprintf(
             "SELECT %s FROM %s",
-            implode(', ', $item),
-            $this->table
+            implode(', ', $items),
+            $model->table
         );
-        return $this->db->query($sql)->all();
+        return $model->db->query($sql)->all();
+    }
+
+
+    /**
+     * @param $key
+     * @param string[] $items
+     * @return mixed
+     */
+    public function find($key, array $items = ['*'])
+    {
+
+        $new = (new static());
+
+
+        $sql = sprintf(
+            "SELECT %s FROM %s WHERE %s = %s",
+            implode(', ', $items),
+            $this->table,
+            $this->key,
+            $key
+        );
+        return $new->query($sql)->all();
     }
 
     /**
@@ -100,26 +131,7 @@ abstract class Model implements ModelInterface
 
     }
 
-
-    /**
-     * @param $key
-     * @param string[] $items
-     * @return mixed
-     */
-    public function find($key, $items = ['*'])
-    {
-        $sql = sprintf(
-            "SELECT %s FROM %s WHERE %s = %s",
-            implode(', ', $items),
-            $this->table,
-            $this->key,
-            $key
-        );
-        return $this->db->query($sql)->all();
-    }
-
-
-    public function update($key, $items = [])
+    public function update($key, array $items = [])
     {
 
 
@@ -161,6 +173,35 @@ abstract class Model implements ModelInterface
     public function getTable()
     {
         return $this->table;
+    }
+
+
+    /**
+     * set a new atteribute
+     **/
+    public function __set($name, $value)
+    {
+        $this->attribute[$name] = $value;
+    }
+
+    /**
+     * get a atteribute
+     **/
+    public function __get($name)
+    {
+        return $this->attribute[$name];
+    }
+
+
+    /**
+     * @param $method
+     * @param $parameters
+     * @return mixed
+     */
+    public static function __callStatic($method, $parameters)
+    {
+        $model = get_called_class();
+        return call_user_func_array([new $model, $method], $parameters);
     }
 
 }

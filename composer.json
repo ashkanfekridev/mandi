@@ -13,9 +13,10 @@
     "ashkanfekri/router": "^1.0",
     "ashkanfekri/response": "^1.0",
     "ashkanfekri/request": "^1.0",
-    "ashkanfekri/php-pdo-connector": "^1.0"
+    "ashkanfekri/php-pdo-connector": "^2.0"
   },
   "autoload": {
+    "file": [],
     "psr-4": {
       "App\\": "app/"
     }
