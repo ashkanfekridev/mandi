@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Ashkanfekri\dodo\PDOConnector;
 
-class Posts
+class Post extends Model
 {
     protected $table = 'posts';
     protected $key = 'id';

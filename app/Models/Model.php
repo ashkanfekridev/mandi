@@ -16,16 +16,19 @@ interface ModelInterface
     public function update($key, array $items);
 
     public function delete();
+    public function getTable();
 
 }
 
 abstract class Model implements ModelInterface
 {
+
     protected $table;
     protected $key;
     protected $db;
     protected $fillable;
     private $attribute;
+
 
     public function __construct()
     {
@@ -77,7 +80,7 @@ abstract class Model implements ModelInterface
         foreach ($this->fillable as $item) {
 
             if (!isset($array[$item]))
-                $data[$item] = $array[$item] = '';
+                $data[$item] = $array[$item] = NULL;
 
             $data[$item] = $array[$item];
         }
@@ -154,4 +157,10 @@ abstract class Model implements ModelInterface
     {
         //TODO
     }
+
+    public function getTable()
+    {
+        return $this->table;
+    }
+
 }
