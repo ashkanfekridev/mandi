@@ -9,7 +9,7 @@ use Ashkanfekri\dodo\Response;
 use App\Models\User;
 
 
-class AppController
+class AppController extends Controller
 {
     public function install()
     {
@@ -22,7 +22,7 @@ class AppController
                 `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
                 `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`)) ENGINE = InnoDB;";
-        $db = (new PDOConnector())->query($sql)->execute();
+        $db = PDOConnector::getInstance()->query($sql)->execute();
 //        create posts table
 
 
@@ -36,7 +36,7 @@ class AppController
                 `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ,
                 `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`)) ENGINE = InnoDB;";
-        $db = (new PDOConnector())->query($sql)->execute();
+        $db = PDOConnector::getInstance()->query($sql)->execute();
 //        create users table
 
         return $db;
@@ -45,6 +45,7 @@ class AppController
 
     public function landing()
     {
+//        return "hi";
         return User::all();
 
 
